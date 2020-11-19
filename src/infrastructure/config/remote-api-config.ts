@@ -1,4 +1,4 @@
-export default class RemoteAPIConfig {
+export class RemoteAPIConfig {
   baseURL: string;
 
   timeout: number;

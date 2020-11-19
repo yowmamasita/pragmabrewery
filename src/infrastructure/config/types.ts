@@ -1,3 +1,1 @@
-type UnknownCfg = Record<string, unknown>;
-
-export default UnknownCfg;
+export type UnknownCfg = Record<string, unknown>;

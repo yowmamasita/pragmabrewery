@@ -1,4 +1,4 @@
-export default class Beer {
+export class Beer {
   name: string;
 
   lowestSafeTemp: number;

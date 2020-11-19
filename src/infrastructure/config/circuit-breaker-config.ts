@@ -1,4 +1,4 @@
-export default class CircuitBreakerConfig {
+export class CircuitBreakerConfig {
   errorThresholdPct: number;
 
   resetTimeout: number;

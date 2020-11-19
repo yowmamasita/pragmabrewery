@@ -1,6 +1,6 @@
-import Beer from '../../domain/beer';
+import { Beer } from '../../domain';
 
-export default class AppData {
+export class AppData {
   beers: Beer[];
 
   constructor(beers: Beer[]) {

@@ -1,3 +1,1 @@
-import runServer from './server';
-
-export default { runServer };
+export * from './server';

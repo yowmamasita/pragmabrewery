@@ -1,7 +1,7 @@
-import CircuitBreakerConfig from './circuit-breaker-config';
-import RemoteAPIConfig from './remote-api-config';
+import { CircuitBreakerConfig } from './circuit-breaker-config';
+import { RemoteAPIConfig } from './remote-api-config';
 
-export default class TemperatureSensorAPIConfig {
+export class TemperatureSensorAPIConfig {
   api: RemoteAPIConfig;
 
   checkFrequency: number;

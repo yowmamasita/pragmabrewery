@@ -1,5 +1,5 @@
-import AppConfig from './src/infrastructure/config/app-config';
-import http from './src/infrastructure/http';
+import { AppConfig } from './src/infrastructure/config';
+import * as http from './src/infrastructure/http';
 
 const specFileEnvPath = 'SPEC_FILE';
 

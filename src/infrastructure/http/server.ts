@@ -1,7 +1,5 @@
-import AppConfig from '../config/app-config';
+import { AppConfig } from '../config';
 
-const runServer = (config: AppConfig): void => {
+export const runServer = (config: AppConfig): void => {
   console.log(config);
 };
-
-export default runServer;

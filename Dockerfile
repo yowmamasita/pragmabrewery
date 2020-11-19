@@ -12,4 +12,4 @@ RUN yarn
 
 COPY . /app
 
-RUN yarn start
+CMD yarn start

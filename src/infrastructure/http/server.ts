@@ -11,6 +11,6 @@ export const runServer = (config: AppConfig): void => {
   registry.registerBeersHandler(app);
   app.listen(config.general.port, () => {
     // eslint-disable-next-line no-console
-    console.log(`The server is now running at port ${config.general.port}`, config);
+    console.log(`The server is now running at port ${config.general.port}`);
   });
 };

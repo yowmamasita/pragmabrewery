@@ -13,12 +13,18 @@ export class BeersHandler implements Handler {
   }
 
   registerRoutes(): void {
-    this.app.get('/beers', this.getAllBeers());
+    this.app.get('/beer-temperatures', this.getAllBeerTemps());
   }
 
-  getAllBeers(): express.Handler {
+  getAllBeerTemps(): express.Handler {
     return (req: express.Request, res: express.Response) => {
-      this.beerService.getAllBeers().then((beers) => res.send(beers));
+      this.beerService.getAllBeers().then(
+        (beers) => Promise.all(
+          beers.map((beer) => this.beerService.getBeerTemperature(beer.id)),
+        ),
+      )
+        .then((temps) => res.send(temps))
+        .catch((err) => res.send(err));
     };
   }
 }

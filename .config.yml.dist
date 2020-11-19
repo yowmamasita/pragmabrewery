@@ -1,4 +1,6 @@
 spec:
+  general:
+    port: 8080
   data:
     beers:
       - id: 1

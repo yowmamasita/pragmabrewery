@@ -2,6 +2,8 @@
 
 This is the server backend for `pragmabrewery-app`
 
+Run `cp .config.yml.dist .config.yml` to create your own config
+
 ```
 yarn start - runs the server
 yarn lint - runs eslint

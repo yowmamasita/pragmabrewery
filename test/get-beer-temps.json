@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "540baa53-6dbb-4401-802d-c0fcb49794ae",
+		"name": "PragmaBrewery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Beer Temperatures",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfae9fe6-d563-4daa-b197-0dab22b8caf2",
+						"exec": [
+							"pm.test(\"The response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"The response has all properties\", () => {",
+							"    const beerTemps = pm.response.json();",
+							"    pm.expect(beerTemps.length).to.be.gt(0);",
+							"    const beerTemp = beerTemps[0];",
+							"    pm.expect(beerTemp.currentTemperature).to.be.a(\"number\");",
+							"    pm.expect(beerTemp.beer).to.be.a(\"object\");",
+							"    pm.expect(beerTemp.beer.id).to.be.a(\"number\");",
+							"    pm.expect(beerTemp.beer.name).to.be.a(\"string\");",
+							"    pm.expect(beerTemp.beer.lowestSafeTemp).to.be.a(\"number\");",
+							"    pm.expect(beerTemp.beer.highestSafeTemp).to.be.a(\"number\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/beer-temperatures",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"beer-temperatures"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -4,7 +4,7 @@ import { Registry } from '../registry';
 
 export const runServer = (config: AppConfig): void => {
   const app = express();
-  app.get('/', (req, res) => res.send('hello'));
+  app.get('/', (req, res) => res.send('/beers is where it\'s at!'));
   const registry = new Registry(config);
   registry.registerBeersHandler(app);
   app.listen(config.general.port, () => {

@@ -1,6 +1,5 @@
 import fs from 'fs';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import { UnknownCfg } from './types';
 
 export const loadConfig = (specFile: string): UnknownCfg => {

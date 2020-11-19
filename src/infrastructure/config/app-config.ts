@@ -1,29 +1,39 @@
 import { Beer } from '../../domain';
 import { AppData } from './app-data';
 import { CircuitBreakerConfig } from './circuit-breaker-config';
+import { GeneralConfig } from './general-config';
 import { loadConfig } from './load-config';
 import { RemoteAPIConfig } from './remote-api-config';
 import { TemperatureSensorAPIConfig } from './temperature-sensor-api';
 import { UnknownCfg } from './types';
 
 export class AppConfig {
+  general: GeneralConfig;
+
   temperatureSensorAPI: TemperatureSensorAPIConfig;
 
   data: AppData;
 
-  constructor(temperatureSensorAPI: TemperatureSensorAPIConfig, data: AppData) {
+  constructor(
+    general: GeneralConfig,
+    temperatureSensorAPI: TemperatureSensorAPIConfig,
+    data: AppData,
+  ) {
+    this.general = general;
     this.temperatureSensorAPI = temperatureSensorAPI;
     this.data = data;
   }
 
   static load(filePath: string): AppConfig {
     const cfg = loadConfig(filePath);
-    const sensorCfg = <UnknownCfg>cfg.temperature_sensor_api;
-    const remoteCfg = new RemoteAPIConfig(<string>sensorCfg.base_url, <number>sensorCfg.timeout);
-    const frequency = <number>sensorCfg.frequency;
+    const general = <UnknownCfg>cfg.general;
+    const generalCfg = new GeneralConfig(<number>general.port);
+    const sensor = <UnknownCfg>cfg.temperature_sensor_api;
+    const remoteCfg = new RemoteAPIConfig(<string>sensor.base_url, <number>sensor.timeout);
+    const frequency = <number>sensor.frequency;
     const cbCfg = new CircuitBreakerConfig(
-      <number>sensorCfg.error_threshold_pct,
-      <number>sensorCfg.reset_timeout,
+      <number>sensor.error_threshold_pct,
+      <number>sensor.reset_timeout,
     );
     const data = <UnknownCfg>cfg.data;
     const beers = (<UnknownCfg[]>data.beers).map(
@@ -34,7 +44,7 @@ export class AppConfig {
       ),
     );
     const dataCfg = new AppData(beers);
-    const apiConfig = new TemperatureSensorAPIConfig(remoteCfg, frequency, cbCfg);
-    return new AppConfig(apiConfig, dataCfg);
+    const apiCfg = new TemperatureSensorAPIConfig(remoteCfg, frequency, cbCfg);
+    return new AppConfig(generalCfg, apiCfg, dataCfg);
   }
 }

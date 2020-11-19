@@ -7,6 +7,7 @@ WORKDIR /app
 
 COPY package.json ./
 COPY yarn.lock ./
+COPY .config.yml.dist ./.config.yml
 RUN yarn
 
 COPY . /app

@@ -38,6 +38,7 @@ export class AppConfig {
     const data = <UnknownCfg>cfg.data;
     const beers = (<UnknownCfg[]>data.beers).map(
       (b) => new Beer(
+        <number>b.id,
         <string>b.name,
         <number>b.lowest_safe_temp,
         <number>b.highest_safe_temp,

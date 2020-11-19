@@ -27,7 +27,6 @@ spec:
         highest_safe_temp: 6
   temperature_sensor_api:
     base_url: https://temperature-sensor-service.herokuapp.com
-    sensor_endpoint: /sensor/{id}
     frequency: 1000
     timeout: 3000
     error_threshold_pct: 50
